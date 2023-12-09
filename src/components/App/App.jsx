@@ -13,8 +13,7 @@ function App() {
         </Route>
         <Route 
           exact path="/description">
-            <DescriptionPage 
-              data-testid="movieDetails" />
+            <DescriptionPage />
           </Route>
         {/* Add Movie page */}
         

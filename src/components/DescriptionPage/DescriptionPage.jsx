@@ -6,6 +6,7 @@ function DescriptionPage (){
     const history = useHistory();
     const dispatch = useDispatch();
     const currentMovie = useSelector(store => store.currentMovie)
+    const genres = useSelector(store => store.genres)
     const goBack = () => {
         history.push('/')
         dispatch({
@@ -13,7 +14,7 @@ function DescriptionPage (){
         })
     }
     return (
-        <div>
+        <div data-testid="movieDetails">
             <h2>{currentMovie.title}</h2>
             <img
                 src={currentMovie.poster} 
@@ -22,6 +23,12 @@ function DescriptionPage (){
             <button onClick={goBack}
                     data-testid="toList"
                 >BACK</button>
+            <h3>Genres:</h3>
+            <ul>
+            {genres.map((genre) => (
+                <li>{genre.name}</li>
+            ))}
+            </ul>
         </div>
     )
 }

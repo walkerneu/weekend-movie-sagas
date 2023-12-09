@@ -8,6 +8,7 @@ import axios from 'axios';
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeLatest('SAGA/GET_CURRENT_MOVIE', getMovieById);
+  yield takeLatest('SAGA/GET_CURRENT_GENRES', getGenresById);
 }
 
 function* fetchAllMovies() {
@@ -30,8 +31,20 @@ function* getMovieById(action){
       type: 'SET_CURRENT_MOVIE',
       payload: response.data[0]
     })
+    yield getGenresById(action.payload);
   } catch (error) {
     console.log('GET movie by ID error', error)
+  }
+}
+function* getGenresById(id){
+  try {
+    const response = yield axios.get(`/api/movies/genres/${id}`);
+    yield put ({
+      type: 'SET_GENRES',
+      payload: response.data
+    })
+  } catch (error) {
+    console.log('Get genres by ID failed', error)
   }
 }
 
