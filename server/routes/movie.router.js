@@ -17,6 +17,22 @@ router.get('/', (req, res) => {
     })
 
 });
+router.get('/:id', (req, res) => {
+  const query = `
+    SELECT * FROM "movies"
+      WHERE "id" = $1;
+  `;
+  const sqlValues = req.params.id
+  pool.query(query, [sqlValues])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all movies', err);
+      res.sendStatus(500)
+    })
+
+});
 
 router.post('/', (req, res) => {
   console.log(req.body);

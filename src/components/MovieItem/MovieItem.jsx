@@ -1,24 +1,24 @@
 import { useDispatch } from "react-redux"
-import  {HashRouter as Route, Link } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
+import {HashRouter as Link} from "react-router-dom";
 
 function MovieItem ({ movie }){
     const dispatch = useDispatch();
-
+    const history = useHistory();
     const imgClick = () => {
-        dispatch({
-            type: 'SET_CURRENT_MOVIE',
-            payload: movie
-        })
-    }    
+        dispatch({ 
+            type: 'SAGA/GET_CURRENT_MOVIE',
+            payload: movie.id });
+        history.push(`/description/`);
+    }
     return (
-        <div>
-              <h3>{movie.title}</h3>  
-              <Link to={movie.id}>
+        <div data-testid='movieItem'>
+              <h3>{movie.title}</h3>
               <img 
                 onClick={imgClick} 
                 src={movie.poster} 
-                alt={movie.title}/>
-                </Link>
+                alt={movie.title}
+                data-testid="toDetails"/> 
         </div>
     )
 }
