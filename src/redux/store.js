@@ -9,6 +9,7 @@ function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeLatest('SAGA/GET_CURRENT_MOVIE', getMovieById);
   yield takeLatest('SAGA/GET_CURRENT_GENRES', getGenresById);
+  yield takeLatest('SAGA/GET_GENRES', fetchAllGenres);
 }
 
 function* fetchAllMovies() {
@@ -22,6 +23,17 @@ function* fetchAllMovies() {
     });
   } catch (error) {
     console.log('fetchAllMovies error:', error);
+  }
+}
+function* fetchAllGenres() {
+  try {
+    const response = yield axios.get('/api/genres');
+    yield put({
+      type: 'SET_GENRES',
+      payload: response.data
+    });
+  } catch (error) {
+    console.log('fetchAllGenres error:', error);
   }
 }
 function* getMovieById(action){
