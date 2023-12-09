@@ -40,7 +40,7 @@ function* getGenresById(id){
   try {
     const response = yield axios.get(`/api/movies/genres/${id}`);
     yield put ({
-      type: 'SET_GENRES',
+      type: 'SET_CURRENT_GENRES',
       payload: response.data
     })
   } catch (error) {
@@ -71,6 +71,15 @@ const genres = (state = [], action) => {
   }
 }
 
+const currentGenres = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_CURRENT_GENRES':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 const currentMovie = (state = {}, action) => {
   switch (action.type) {
     case 'SET_CURRENT_MOVIE':
@@ -88,6 +97,7 @@ const storeInstance = createStore(
     movies,
     genres,
     currentMovie,
+    currentGenres,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger),

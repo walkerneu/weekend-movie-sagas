@@ -10,7 +10,7 @@ function DescriptionPage (){
     const history = useHistory();
     const dispatch = useDispatch();
     const currentMovie = useSelector(store => store.currentMovie)
-    const genres = useSelector(store => store.genres)
+    const genres = useSelector(store => store.currentGenres)
     const goBack = () => {
         history.push('/')
         dispatch({
