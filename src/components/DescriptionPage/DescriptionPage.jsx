@@ -1,16 +1,23 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActions } from '@mui/material';
+import { useEffect } from "react";
 
 function DescriptionPage (){
+    const { id } = useParams()
     const history = useHistory();
     const dispatch = useDispatch();
     const currentMovie = useSelector(store => store.currentMovie)
     const genres = useSelector(store => store.currentGenres)
+    useEffect(() => {
+        dispatch({ 
+            type: 'SAGA/GET_CURRENT_MOVIE',
+            payload: id });
+      }, []);
     const goBack = () => {
         history.push('/')
         dispatch({

@@ -10,10 +10,7 @@ function MovieItem ({ movie }){
     const dispatch = useDispatch();
     const history = useHistory();
     const imgClick = () => {
-        dispatch({ 
-            type: 'SAGA/GET_CURRENT_MOVIE',
-            payload: movie.id });
-        history.push(`/description`);
+        history.push(`/description/${movie.id}`);
     }
     return (  
     <Card sx={{ maxWidth: 183 }} data-testid='movieItem'>
