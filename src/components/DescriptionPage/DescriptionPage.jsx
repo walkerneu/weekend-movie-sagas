@@ -1,5 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Button, CardActions } from '@mui/material';
 
 function DescriptionPage (){
     const history = useHistory();
@@ -13,22 +18,44 @@ function DescriptionPage (){
         })
     }
     return (
-        <div data-testid="movieDetails">
-            <h2>{currentMovie.title}</h2>
-            <img
-                src={currentMovie.poster} 
-                alt={currentMovie.title}/>
-            <p>{currentMovie.description}</p>
-            <button onClick={goBack}
-                    data-testid="toList"
-                >BACK</button>
-            <h3>Genres:</h3>
-            <ul>
-            {genres.map((genre) => (
-                <li>{genre.name}</li>
+    <Card 
+        sx={{ maxWidth: 300 }} 
+        data-testid="movieDetails"
+        className="description-box">
+  
+        <CardMedia
+          component="img"
+          className="movie-media"
+          image={currentMovie.poster}
+          alt={currentMovie.title}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h3" component="div">
+            {currentMovie.title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {currentMovie.description}
+          </Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            Genres:
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+          {genres.map((genre) => (
+                <span> {genre.name} /</span>
             ))}
-            </ul>
-        </div>
+          </Typography>
+        </CardContent>
+    
+      <CardActions>
+        <Button 
+            size="small" 
+            color="primary"
+            onClick={goBack}
+            data-testid="toList">
+          BACK
+        </Button>
+      </CardActions>
+    </Card> 
     )
 }
 

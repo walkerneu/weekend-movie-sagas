@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+.description-box {
+  margin: auto;
+  width: 50%;
+}
