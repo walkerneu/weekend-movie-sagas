@@ -36,21 +36,24 @@ function SearchBar(){
     }
     return (
         <>
+        <div className="search-container">
+            <div className="search-box">
         <Typography gutterBottom variant="overline" display="block" mt={3}>
         Search for Movies in the collection:
         </Typography>
         <TextField 
-            id="outlined-search" 
-            label="Search field" 
+            label="Search by Title" 
             type="search" 
             onChange={handleSearchInput}
             value={searchQuery}/>
         <Button 
             variant="contained" 
-            color="success" 
+            color="secondary"  
             onClick={submitSearch}>
         Submit
         </Button>
+        </div>
+        <div className="search-box">
         <Typography gutterBottom variant="overline" display="block">
         Search By Genre:
       </Typography>
@@ -68,10 +71,12 @@ function SearchBar(){
       </Select>
       <Button 
             variant="contained" 
-            color="success" 
+            color="secondary"  
             onClick={submitGenreSearch}>
         Submit
         </Button>
+        </div>
+        </div>
         </>
     )
 }
