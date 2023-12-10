@@ -56,7 +56,6 @@ function DescriptionPage() {
           ))}
         </Typography>
       </CardContent>
-
       <CardActions>
         <Button
           size="small"

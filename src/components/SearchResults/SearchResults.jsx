@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
-import MovieItem from '../MovieItem/MovieItem';
-import Typography from '@mui/material/Typography';
+import { useSelector } from "react-redux";
+import MovieItem from "../MovieItem/MovieItem";
+import Typography from "@mui/material/Typography";
 
 function SearchResults() {
-  const searchResults = useSelector(store => store.searchResults);
+  const searchResults = useSelector((store) => store.searchResults);
 
   return (
     <main>
@@ -11,16 +11,12 @@ function SearchResults() {
         Click on a Movie to Learn More!
       </Typography>
       <section className="movies">
-        {searchResults.map(movie => {
-          return (
-            <MovieItem key={movie.id} movie={movie}/>
-          );
+        {searchResults.map((movie) => {
+          return <MovieItem key={movie.id} movie={movie} />;
         })}
       </section>
     </main>
-
   );
 }
-
 
 export default SearchResults;

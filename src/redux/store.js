@@ -29,6 +29,7 @@ function* fetchAllMovies() {
     console.log('fetchAllMovies error:', error);
   }
 }
+// saga function to get the list of genres from the database
 function* fetchAllGenres() {
   try {
     const response = yield axios.get('/api/genres');
@@ -40,6 +41,7 @@ function* fetchAllGenres() {
     console.log('fetchAllGenres error:', error);
   }
 }
+// saga function to get the movie object of a selected movie
 function* getMovieById(action){
   try {
     const response = yield axios.get(`/api/movies/${action.payload}`);
@@ -52,6 +54,7 @@ function* getMovieById(action){
     console.log('GET movie by ID error', error)
   }
 }
+// saga function to get all genres associated with a specific movie id
 function* getGenresById(id){
   try {
     const response = yield axios.get(`/api/movies/genres/${id}`);
@@ -63,6 +66,7 @@ function* getGenresById(id){
     console.log('Get genres by ID failed', error)
   }
 }
+// saga function sends a post request to the server with a new movie object
 function* addNewMovie(action){
   try {
     const response = yield axios ({
@@ -75,6 +79,7 @@ function* addNewMovie(action){
     console.log('POST new movie SAGA fail', error)
   }
 }
+// saga function to update the values of a selected movie object in the database
 function* updateMovie(action){
   try {
     const response = yield axios ({
@@ -90,6 +95,7 @@ function* updateMovie(action){
     console.log('ERROR in SAGA update', error);
   }
 }
+// saga function to execute a get request with a search query and returns movies with matching titles
 function* searchForMovies(action){
   try {
     const response = yield axios ({
@@ -104,6 +110,7 @@ function* searchForMovies(action){
     console.log('error happend in the saga GET search', error);
   }
 }
+// saga function to execute a get request with a search query that returns movies with the selected genre
 function* searchByGenre(action){
   try {
     const response = yield axios ({
@@ -142,6 +149,7 @@ const genres = (state = [], action) => {
   }
 }
 
+// Used to store the genres of a selected movie
 const currentGenres = (state = [], action) => {
   switch (action.type) {
     case 'SET_CURRENT_GENRES':
@@ -150,7 +158,7 @@ const currentGenres = (state = [], action) => {
       return state;
   }
 }
-
+// used to store the current movie object
 const currentMovie = (state = {}, action) => {
   switch (action.type) {
     case 'SET_CURRENT_MOVIE':
@@ -161,6 +169,7 @@ const currentMovie = (state = {}, action) => {
       return state;
   }
 }
+// used to store all movie objects from a search query
 const searchResults = (state = [], action) => {
   switch (action.type){
     case 'SET_SEARCH_RESULTS':
