@@ -20,7 +20,8 @@ function AddMoviePage(){
     const [movieInput, setMovieInput] = useState({
         title: '',
         poster: '',
-        description: ''
+        description: '',
+        genre_id: ''
     });
     const [selectedGenre, setSelectedGenre] = useState('');
     const handleMovieSubmit = (event, num) => {
@@ -30,19 +31,26 @@ function AddMoviePage(){
         else if (num === 2){
             setMovieInput({...movieInput, poster: event.target.value})
         }
-        else {
+        else{
             setMovieInput({...movieInput, description: event.target.value})
         }
         console.log("This is the movieInput", movieInput);
     }
     const handleGenreSelect = (event) => {
-        setSelectedGenre(event.target.value);
-        console.log(event.target.value)
+        setMovieInput({...movieInput, genre_id: event.target.value})
     }
     const cancelSubmission = () => {
+        setMovieInput({})
         history.push('/')
     }
-    console.log("this is the selectedGenre:", selectedGenre);
+    const submitMovie = () => {
+        dispatch({
+            type: 'SAGA/POST_MOVIE',
+            payload: movieInput
+        })
+        setMovieInput({})
+    }
+    console.log("this is the selectedGenre:", movieInput.genre_id);
     
 
 
@@ -81,7 +89,7 @@ function AddMoviePage(){
           helperText="Please select the movie's genre"
           value={selectedGenre}
           label="genre"
-          onChange={() => handleGenreSelect(event)}
+          onChange={handleGenreSelect}
         >
         {genres.map((genre) => (
             <MenuItem
@@ -91,7 +99,10 @@ function AddMoviePage(){
             </MenuItem>
         ))}
         </TextField>
-            <Button variant="contained" color="success">
+            <Button 
+                variant="contained" 
+                color="success"
+                onClick={submitMovie}>
                 Submit
             </Button>
             <Button 

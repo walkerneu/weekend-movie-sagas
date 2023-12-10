@@ -10,6 +10,7 @@ function* rootSaga() {
   yield takeLatest('SAGA/GET_CURRENT_MOVIE', getMovieById);
   yield takeLatest('SAGA/GET_CURRENT_GENRES', getGenresById);
   yield takeLatest('SAGA/GET_GENRES', fetchAllGenres);
+  yield takeLatest('SAGA/POST_MOVIE', addNewMovie);
 }
 
 function* fetchAllMovies() {
@@ -57,6 +58,18 @@ function* getGenresById(id){
     })
   } catch (error) {
     console.log('Get genres by ID failed', error)
+  }
+}
+function* addNewMovie(action){
+  try {
+    const response = yield axios ({
+      method: 'POST',
+      url: '/api/movies',
+      data: action.payload
+    })
+    yield fetchAllMovies();
+  } catch (error) {
+    console.log('POST new movie SAGA fail', error)
   }
 }
 
