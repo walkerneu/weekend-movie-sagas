@@ -34,13 +34,17 @@ function AddMoviePage(){
         else{
             setMovieInput({...movieInput, description: event.target.value})
         }
-        console.log("This is the movieInput", movieInput);
     }
     const handleGenreSelect = (event) => {
         setMovieInput({...movieInput, genre_id: event.target.value})
     }
     const cancelSubmission = () => {
-        setMovieInput({})
+        setMovieInput({
+            title: '',
+            poster: '',
+            description: '',
+            genre_id: ''
+        })
         history.push('/')
     }
     const submitMovie = () => {
@@ -48,12 +52,13 @@ function AddMoviePage(){
             type: 'SAGA/POST_MOVIE',
             payload: movieInput
         })
-        setMovieInput({})
+        setMovieInput({
+            title: '',
+            poster: '',
+            description: '',
+            genre_id: ''
+        })
     }
-    console.log("this is the selectedGenre:", movieInput.genre_id);
-    
-
-
     return (
      <Box sx={{ minWidth: 120 }}>
       <TextField
