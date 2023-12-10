@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
+import { Select } from "@mui/material";
 
 function AddMoviePage() {
   const history = useHistory();
@@ -17,9 +18,8 @@ function AddMoviePage() {
     title: "",
     poster: "",
     description: "",
-    genre_id: "",
+    genre_id: [],
   });
-  const [selectedGenre, setSelectedGenre] = useState("");
   const handleMovieSubmit = (event, num) => {
     if (num === 1) {
       setMovieInput({ ...movieInput, title: event.target.value });
@@ -30,12 +30,8 @@ function AddMoviePage() {
     }
   };
   const handleGenreSelect = (event) => {
-    setSelectedGenre(event.target.value)
-    for (let genre of genres){
-        if (event.target.value === genre.name){
-          setMovieInput({ ...movieInput, genre_id: genre.id });
-        }
-    }
+    setMovieInput({...movieInput, genre_id: event.target.value})
+    console.log(event.target.value);
   };
   const cancelSubmission = () => {
     setMovieInput({
@@ -44,7 +40,6 @@ function AddMoviePage() {
       description: "",
       genre_id: "",
     });
-    setSelectedGenre('');
     history.push("/");
   };
   const submitMovie = () => {
@@ -58,7 +53,6 @@ function AddMoviePage() {
       description: "",
       genre_id: "",
     });
-    setSelectedGenre('');
     history.push("/");
   };
   return (
@@ -91,19 +85,19 @@ function AddMoviePage() {
         value={movieInput.description}
         onChange={() => handleMovieSubmit(event, 3)}
       />
-      <TextField
-        select
+      <Select
+        multiple
         helperText="Please select the movie's genre"
-        value={selectedGenre}
+        value={movieInput.genre_id}
         label="genre"
         onChange={handleGenreSelect}
       >
         {genres.map((genre) => (
-          <MenuItem key={genre.id} value={genre.name}>
+          <MenuItem key={genre.id} value={genre.id}>
             {genre.name}
           </MenuItem>
         ))}
-      </TextField>
+      </Select>
       <Button variant="contained" color="success" onClick={submitMovie}>
         Submit
       </Button>
