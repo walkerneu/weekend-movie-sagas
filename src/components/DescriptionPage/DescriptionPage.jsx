@@ -19,10 +19,10 @@ function DescriptionPage (){
             payload: id });
       }, []);
     const goBack = () => {
-        history.push('/')
         dispatch({
             type: 'CLEAR_CURRENT_MOVIE',
         })
+        history.goBack();
     }
     const goToEdit = () => {
         history.push(`/edit/${id}`)

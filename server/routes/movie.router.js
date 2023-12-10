@@ -56,7 +56,11 @@ router.get('/genres/:id', (req, res) => {
 });
 router.get('/search/genres/:id', (req, res) => {
   const query = `
-    SELECT *
+    SELECT 
+    "movies"."id",
+    "movies"."title",
+    "movies"."poster",
+    "movies"."description"
     FROM "movies"
 	    JOIN "movies_genres"
 	      ON "movies"."id" = "movies_genres"."movie_id"
