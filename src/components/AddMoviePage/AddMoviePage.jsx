@@ -32,7 +32,7 @@ function AddMoviePage() {
   const handleGenreSelect = (event) => {
     setSelectedGenre(event.target.value)
     for (let genre of genres){
-        if (selectedGenre === genre.name){
+        if (event.target.value === genre.name){
           setMovieInput({ ...movieInput, genre_id: genre.id });
         }
     }
@@ -44,6 +44,7 @@ function AddMoviePage() {
       description: "",
       genre_id: "",
     });
+    setSelectedGenre('');
     history.push("/");
   };
   const submitMovie = () => {
@@ -57,6 +58,8 @@ function AddMoviePage() {
       description: "",
       genre_id: "",
     });
+    setSelectedGenre('');
+    history.push("/");
   };
   return (
     <Box sx={{ minWidth: 120 }}>
