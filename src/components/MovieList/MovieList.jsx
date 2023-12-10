@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import MovieItem from '../MovieItem/MovieItem';
+import Typography from '@mui/material/Typography';
 
 function MovieList() {
 
@@ -14,7 +15,9 @@ function MovieList() {
 
   return (
     <main>
-      <h1>MovieList</h1>
+      <Typography gutterBottom variant="h4" display="block">
+        Movie List!
+      </Typography>
       <section className="movies">
         {movies.map(movie => {
           return (

@@ -3,9 +3,12 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Button from "@mui/material/Button";
+import { Button, CardActions } from '@mui/material';
 import { useHistory } from "react-router-dom";
 import { Select } from "@mui/material";
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 
 function AddMoviePage() {
   const history = useHistory();
@@ -56,7 +59,20 @@ function AddMoviePage() {
     history.push("/");
   };
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Card 
+        sx={{ maxWidth: 600, height: 650 }} 
+        data-testid="movieDetails"
+        className="description-box">
+      <Typography gutterBottom variant="h4" component="div">
+        Add A New Movie!
+      </Typography>
+      {/* <CardMedia
+          component="img"
+          className="movie-media"
+          image={movieInput.poster}
+          alt={movieInput.title}
+        /> */}
+        <p>
       <TextField
         id="filled-multiline-flexible"
         label="Movie Title"
@@ -67,6 +83,7 @@ function AddMoviePage() {
         value={movieInput.title}
         onChange={() => handleMovieSubmit(event, 1)}
       />
+      </p>
       <TextField
         id="filled-textarea"
         label="Movie Poster URL"
@@ -76,15 +93,18 @@ function AddMoviePage() {
         value={movieInput.poster}
         onChange={() => handleMovieSubmit(event, 2)}
       />
+      <p>
       <TextField
         id="filled-multiline-static"
         label="Movie Description"
         multiline
-        rows={4}
+        rows={6}
         variant="filled"
         value={movieInput.description}
         onChange={() => handleMovieSubmit(event, 3)}
       />
+      </p>
+      <p>
       <Select
         multiple
         helperText="Please select the movie's genre"
@@ -98,13 +118,16 @@ function AddMoviePage() {
           </MenuItem>
         ))}
       </Select>
+      </p>
+      <CardActions>
       <Button variant="contained" color="success" onClick={submitMovie}>
         Submit
       </Button>
       <Button variant="outlined" color="error" onClick={cancelSubmission}>
         Cancel
       </Button>
-    </Box>
+      </CardActions>
+    </Card>
   );
 }
 

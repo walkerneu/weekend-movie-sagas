@@ -3,8 +3,11 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Button from "@mui/material/Button";
+import { Button, CardActions } from '@mui/material';
 import { useHistory, useParams } from "react-router-dom";
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 
 function EditPage() {
   const { id } = useParams();
@@ -37,7 +40,14 @@ function EditPage() {
     history.push(`/description/${id}`);
   };
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Card 
+        sx={{ maxWidth: 600, height: 500 }} 
+        data-testid="movieDetails"
+        className="description-box">
+    <Typography gutterBottom variant="h4" component="div">
+        Edit {currentMovie.title}!
+    </Typography>
+    <p>
       <TextField
         id="filled-multiline-flexible"
         label="Movie Title"
@@ -48,23 +58,27 @@ function EditPage() {
         value={movieInput.title}
         onChange={() => handleMovieSubmit(event, 1)}
       />
-
+    </p>
+    <p>
       <TextField
         id="filled-multiline-static"
         label="Movie Description"
         multiline
-        rows={4}
+        rows={6}
         variant="filled"
         value={movieInput.description}
         onChange={() => handleMovieSubmit(event, 2)}
       />
+    </p>
+      <CardActions>
       <Button variant="contained" color="success" onClick={updateMovie}>
         Submit
       </Button>
       <Button variant="outlined" color="error" onClick={cancelSubmission}>
         Cancel
       </Button>
-    </Box>
+      </CardActions>
+    </Card>
   );
 }
 
