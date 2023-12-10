@@ -60,10 +60,10 @@ function AddMoviePage() {
   };
   return (
     <Card 
-        sx={{ maxWidth: 600, height: 650 }} 
+        sx={{ maxWidth: 600, height: 750 }} 
         data-testid="movieDetails"
         className="description-box">
-      <Typography gutterBottom variant="h4" component="div">
+      <Typography gutterBottom variant="h4" component="div" mt={5}>
         Add A New Movie!
       </Typography>
       {/* <CardMedia
@@ -73,6 +73,9 @@ function AddMoviePage() {
           alt={movieInput.title}
         /> */}
         <p>
+      <Typography gutterBottom variant="overline" display="block">
+        Enter Movie Title:
+      </Typography>
       <TextField
         id="filled-multiline-flexible"
         label="Movie Title"
@@ -84,6 +87,9 @@ function AddMoviePage() {
         onChange={() => handleMovieSubmit(event, 1)}
       />
       </p>
+      <Typography gutterBottom variant="overline" display="block">
+        Enter URL to Movie Poster:
+      </Typography>
       <TextField
         id="filled-textarea"
         label="Movie Poster URL"
@@ -94,6 +100,9 @@ function AddMoviePage() {
         onChange={() => handleMovieSubmit(event, 2)}
       />
       <p>
+      <Typography gutterBottom variant="overline" display="block">
+        Enter Movie Description:
+      </Typography>
       <TextField
         id="filled-multiline-static"
         label="Movie Description"
@@ -105,6 +114,9 @@ function AddMoviePage() {
       />
       </p>
       <p>
+      <Typography gutterBottom variant="overline" display="block">
+        Select All Relevant Genres:
+      </Typography>
       <Select
         multiple
         helperText="Please select the movie's genre"

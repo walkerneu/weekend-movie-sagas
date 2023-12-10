@@ -5,6 +5,7 @@ import DescriptionPage from '../DescriptionPage/DescriptionPage';
 import Header from '../Header/Header';
 import AddMoviePage from '../AddMoviePage/AddMoviePage';
 import EditPage from '../EditPage/EditPage';
+import SearchBar from '../SearchBar/SearchBar';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <Header />      
         <Route path="/" exact>
+          <SearchBar />
           <MovieList />
         </Route>
         <Route 

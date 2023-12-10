@@ -15,8 +15,8 @@ function MovieList() {
 
   return (
     <main>
-      <Typography gutterBottom variant="h4" display="block">
-        Movie List!
+      <Typography gutterBottom variant="h5" display="block" mt={5} mb={3}>
+        Click on a Movie to Learn More!
       </Typography>
       <section className="movies">
         {movies.map(movie => {

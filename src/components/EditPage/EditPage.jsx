@@ -41,13 +41,16 @@ function EditPage() {
   };
   return (
     <Card 
-        sx={{ maxWidth: 600, height: 500 }} 
+        sx={{ maxWidth: 600, height: 600 }} 
         data-testid="movieDetails"
         className="description-box">
-    <Typography gutterBottom variant="h4" component="div">
+    <Typography gutterBottom variant="h4" component="div" mt={5}>
         Edit {currentMovie.title}!
     </Typography>
     <p>
+    <Typography gutterBottom variant="overline" display="block">
+        Edit Movie Title:
+    </Typography>
       <TextField
         id="filled-multiline-flexible"
         label="Movie Title"
@@ -60,6 +63,9 @@ function EditPage() {
       />
     </p>
     <p>
+    <Typography gutterBottom variant="overline" display="block">
+        Edit Movie Description:
+    </Typography>
       <TextField
         id="filled-multiline-static"
         label="Movie Description"
