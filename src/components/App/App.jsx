@@ -12,9 +12,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
-        <SearchBar />     
+        <Header />   
         <Route path="/" exact>
+          <SearchBar />  
           <MovieList />
         </Route>
         <Route 
@@ -28,6 +28,7 @@ function App() {
           <EditPage />
         </Route>
         <Route exact path="/searchResults">
+          <SearchBar/>
           <SearchResults />
         </Route>
         

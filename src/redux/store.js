@@ -13,6 +13,7 @@ function* rootSaga() {
   yield takeLatest('SAGA/POST_MOVIE', addNewMovie);
   yield takeLatest('SAGA/UPDATE_MOVIE', updateMovie);
   yield takeLatest('SAGA/GET_SEARCH', searchForMovies);
+  yield takeLatest('SAGA/GET_GENRE_SEARCH', searchByGenre);
 }
 
 function* fetchAllMovies() {
@@ -101,6 +102,20 @@ function* searchForMovies(action){
     })
   } catch (error) {
     console.log('error happend in the saga GET search', error);
+  }
+}
+function* searchByGenre(action){
+  try {
+    const response = yield axios ({
+      method: 'GET',
+      url: `api/movies/search/genres/${action.payload}`
+    })
+    yield put ({
+      type: 'SET_SEARCH_RESULTS',
+      payload: response.data
+    })
+  } catch (error) {
+    console.log('Error happened in Saga genre search', error)
   }
 }
 

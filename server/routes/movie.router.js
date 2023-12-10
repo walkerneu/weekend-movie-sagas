@@ -53,6 +53,27 @@ router.get('/genres/:id', (req, res) => {
       console.log('ERROR: Get all movies', err);
       res.sendStatus(500)
     })
+});
+router.get('/search/genres/:id', (req, res) => {
+  const query = `
+    SELECT *
+    FROM "movies"
+	    JOIN "movies_genres"
+	      ON "movies"."id" = "movies_genres"."movie_id"
+	    JOIN "genres"
+	      ON "movies_genres"."genre_id" = "genres"."id"
+    WHERE "genres"."id" = $1;
+  `;
+  const sqlValues = req.params.id
+  pool.query(query, [sqlValues])
+    .then(result => {
+      res.send(result.rows);
+      console.log('this is result.rows for genre search', result.rows)
+    })
+    .catch(err => {
+      console.log('ERROR: Get all movies', err);
+      res.sendStatus(500)
+    })
 
 });
 router.get('/search/:id', (req, res) => {
