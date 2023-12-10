@@ -72,6 +72,16 @@ function* addNewMovie(action){
     console.log('POST new movie SAGA fail', error)
   }
 }
+function* updateMovie(action){
+  try {
+    const response = yield axios ({
+      method: 'PUT',
+      url: `api/movies/${action.payload.id}`,
+      data: action.payload.data
+    })
+    
+  }
+}
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

@@ -1,13 +1,9 @@
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import { useHistory } from 'react-router-dom';
 
 function AddMoviePage(){
@@ -92,7 +88,7 @@ function AddMoviePage(){
         <TextField
           select
           helperText="Please select the movie's genre"
-          value={selectedGenre}
+          value=''
           label="genre"
           onChange={handleGenreSelect}
         >

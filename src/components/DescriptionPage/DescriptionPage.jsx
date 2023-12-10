@@ -8,7 +8,7 @@ import { Button, CardActions } from '@mui/material';
 import { useEffect } from "react";
 
 function DescriptionPage (){
-    const { id } = useParams()
+    const { id } = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
     const currentMovie = useSelector(store => store.currentMovie)
