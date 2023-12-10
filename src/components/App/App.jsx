@@ -6,14 +6,15 @@ import Header from '../Header/Header';
 import AddMoviePage from '../AddMoviePage/AddMoviePage';
 import EditPage from '../EditPage/EditPage';
 import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Header />      
+        <Header />
+        <SearchBar />     
         <Route path="/" exact>
-          <SearchBar />
           <MovieList />
         </Route>
         <Route 
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route exact path="/edit/:id">
           <EditPage />
+        </Route>
+        <Route exact path="/searchResults">
+          <SearchResults />
         </Route>
         
       </Router>

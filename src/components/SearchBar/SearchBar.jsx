@@ -3,9 +3,11 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function SearchBar(){
     const dispatch = useDispatch();
+    const history = useHistory();
     const [searchQuery, setSearchQuery] = useState('')
     const handleSearchInput = (event) => {
         setSearchQuery(event.target.value);
@@ -15,6 +17,7 @@ function SearchBar(){
             type: 'SAGA/GET_SEARCH',
             payload: searchQuery
         })
+        history.push('/searchResults');
     }
     return (
         <>

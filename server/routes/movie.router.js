@@ -56,17 +56,16 @@ router.get('/genres/:id', (req, res) => {
 
 });
 router.get('/search/:id', (req, res) => {
-  console.log('req.query maybe?', req.query)
+  console.log('req.params maybe?', req.params.id)
   const query = `
     SELECT * FROM "movies" 
-      WHERE "title" ILIKE $1
-      ORDER BY "id" DESC
-      LIMIT 10;
+      WHERE "title" ILIKE $1;
   `;
   const sqlParams = req.params.id
-  pool.query(query, [sqlParams])
+  pool.query(query, [`%${sqlParams}%`])
     .then(result => {
       res.send(result.rows);
+      console.log('this the res rows',result.rows)
     })
     .catch(err => {
       console.log('ERROR: Get all movies', err);

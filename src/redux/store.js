@@ -96,7 +96,7 @@ function* searchForMovies(action){
       url: `api/movies/search/${action.payload}`
     })
     yield put ({
-      type: 'SET_MOVIES',
+      type: 'SET_SEARCH_RESULTS',
       payload: response.data
     })
   } catch (error) {
@@ -146,6 +146,14 @@ const currentMovie = (state = {}, action) => {
       return state;
   }
 }
+const searchResults = (state = [], action) => {
+  switch (action.type){
+    case 'SET_SEARCH_RESULTS':
+      return action.payload;
+    default:
+      return state;
+  }
+}
 
 // Create one store that all components can use
 const storeInstance = createStore(
@@ -154,6 +162,7 @@ const storeInstance = createStore(
     genres,
     currentMovie,
     currentGenres,
+    searchResults,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger),
