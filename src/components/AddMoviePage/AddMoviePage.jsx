@@ -1,5 +1,4 @@
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +6,6 @@ import { Button, CardActions } from '@mui/material';
 import { useHistory } from "react-router-dom";
 import { Select } from "@mui/material";
 import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
 function AddMoviePage() {
@@ -66,12 +64,6 @@ function AddMoviePage() {
       <Typography gutterBottom variant="h4" component="div" mt={5}>
         Add A New Movie!
       </Typography>
-      {/* <CardMedia
-          component="img"
-          className="movie-media"
-          image={movieInput.poster}
-          alt={movieInput.title}
-        /> */}
         <p>
       <Typography gutterBottom variant="overline" display="block">
         Enter Movie Title:

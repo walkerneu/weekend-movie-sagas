@@ -1,13 +1,10 @@
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import MenuItem from "@mui/material/MenuItem";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, CardActions } from '@mui/material';
+import { Button, CardActions } from "@mui/material";
 import { useHistory, useParams } from "react-router-dom";
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
 
 function EditPage() {
   const { id } = useParams();
@@ -30,7 +27,7 @@ function EditPage() {
       title: currentMovie.title,
       description: currentMovie.description,
     });
-    history.push(`/description/${id}`);
+    history.goBack();
   };
   const updateMovie = () => {
     dispatch({
@@ -40,49 +37,50 @@ function EditPage() {
     history.push(`/description/${id}`);
   };
   return (
-    <Card 
-        sx={{ maxWidth: 600, height: 600 }} 
-        data-testid="movieDetails"
-        className="description-box">
-    <Typography gutterBottom variant="h4" component="div" mt={5}>
+    <Card
+      sx={{ maxWidth: 600, height: 600 }}
+      data-testid="movieDetails"
+      className="description-box"
+    >
+      <Typography gutterBottom variant="h4" component="div" mt={5}>
         Edit {currentMovie.title}!
-    </Typography>
-    <p>
-    <Typography gutterBottom variant="overline" display="block">
-        Edit Movie Title:
-    </Typography>
-      <TextField
-        id="filled-multiline-flexible"
-        label="Movie Title"
-        placeholder="Movie Title"
-        multiline
-        maxRows={4}
-        variant="filled"
-        value={movieInput.title}
-        onChange={() => handleMovieSubmit(event, 1)}
-      />
-    </p>
-    <p>
-    <Typography gutterBottom variant="overline" display="block">
-        Edit Movie Description:
-    </Typography>
-      <TextField
-        id="filled-multiline-static"
-        label="Movie Description"
-        multiline
-        rows={6}
-        variant="filled"
-        value={movieInput.description}
-        onChange={() => handleMovieSubmit(event, 2)}
-      />
-    </p>
+      </Typography>
+      <p>
+        <Typography gutterBottom variant="overline" display="block">
+          Edit Movie Title:
+        </Typography>
+        <TextField
+          id="filled-multiline-flexible"
+          label="Movie Title"
+          placeholder="Movie Title"
+          multiline
+          maxRows={4}
+          variant="filled"
+          value={movieInput.title}
+          onChange={() => handleMovieSubmit(event, 1)}
+        />
+      </p>
+      <p>
+        <Typography gutterBottom variant="overline" display="block">
+          Edit Movie Description:
+        </Typography>
+        <TextField
+          id="filled-multiline-static"
+          label="Movie Description"
+          multiline
+          rows={6}
+          variant="filled"
+          value={movieInput.description}
+          onChange={() => handleMovieSubmit(event, 2)}
+        />
+      </p>
       <CardActions>
-      <Button variant="contained" color="success" onClick={updateMovie}>
-        Submit
-      </Button>
-      <Button variant="outlined" color="error" onClick={cancelSubmission}>
-        Cancel
-      </Button>
+        <Button variant="contained" color="success" onClick={updateMovie}>
+          Submit
+        </Button>
+        <Button variant="outlined" color="error" onClick={cancelSubmission}>
+          Cancel
+        </Button>
       </CardActions>
     </Card>
   );
