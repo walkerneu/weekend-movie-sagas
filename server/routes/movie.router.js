@@ -104,5 +104,21 @@ router.post('/', (req, res) => {
       res.sendStatus(500)
     })
 })
+router.put('/:id', (req, res) => {
+  const sqlText = `
+  UPDATE "movies"
+  SET ("title", "description") = ($1, $2)
+  WHERE "id" = $3`
+  const sqlValues = [req.body.title, req.body.description, req.params.id]
+  pool.query(sqlText, sqlValues)
+    .then(result => {
+      res.send(result.rows);
+      console.log('this is result.rows', result.rows)
+    })
+    .catch(err => {
+      console.log('ERROR: Get all movies', err);
+      res.sendStatus(500)
+    })
+})
 
 module.exports = router;

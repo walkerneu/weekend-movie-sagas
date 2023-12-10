@@ -11,6 +11,7 @@ function* rootSaga() {
   yield takeLatest('SAGA/GET_CURRENT_GENRES', getGenresById);
   yield takeLatest('SAGA/GET_GENRES', fetchAllGenres);
   yield takeLatest('SAGA/POST_MOVIE', addNewMovie);
+  yield takeLatest('SAGA/UPDATE_MOVIE', updateMovie);
 }
 
 function* fetchAllMovies() {
@@ -79,7 +80,12 @@ function* updateMovie(action){
       url: `api/movies/${action.payload.id}`,
       data: action.payload.data
     })
-    
+    yield put ({
+      type: 'SAGA/GET_CURRENT_MOVIE',
+      payload: action.payload.id
+    })
+  } catch (error) {
+    console.log('ERROR in SAGA update', error);
   }
 }
 

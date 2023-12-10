@@ -24,6 +24,9 @@ function DescriptionPage (){
             type: 'CLEAR_CURRENT_MOVIE',
         })
     }
+    const goToEdit = () => {
+        history.push(`/edit/${id}`)
+    }
     return (
     <Card 
         sx={{ maxWidth: 300 }} 
@@ -48,7 +51,7 @@ function DescriptionPage (){
           </Typography>
           <Typography variant="body2" color="text.secondary">
           {genres.map((genre) => (
-                <span> {genre.name} /</span>
+                <span key={genre.id}> {genre.name} /</span>
             ))}
           </Typography>
         </CardContent>
@@ -60,6 +63,12 @@ function DescriptionPage (){
             onClick={goBack}
             data-testid="toList">
           BACK
+        </Button>
+        <Button 
+            size="small" 
+            color="primary"
+            onClick={goToEdit}>
+          EDIT
         </Button>
       </CardActions>
     </Card> 
