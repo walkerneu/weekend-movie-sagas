@@ -58,7 +58,7 @@ function AddMoviePage() {
   };
   return (
     <Card 
-        sx={{ maxWidth: 600, height: 750 }} 
+        sx={{ maxWidth: 600, height: 775 }} 
         data-testid="movieDetails"
         className="description-box">
       <Typography gutterBottom variant="h4" component="div" mt={5}>
@@ -73,7 +73,7 @@ function AddMoviePage() {
         label="Movie Title"
         placeholder="Movie Title"
         multiline
-        maxRows={4}
+        maxRows={2}
         variant="filled"
         value={movieInput.title}
         onChange={() => handleMovieSubmit(event, 1)}
@@ -83,10 +83,10 @@ function AddMoviePage() {
         Enter URL to Movie Poster:
       </Typography>
       <TextField
-        id="filled-textarea"
         label="Movie Poster URL"
         placeholder="Movie Poster URL"
         multiline
+        maxRows={4}
         variant="filled"
         value={movieInput.poster}
         onChange={() => handleMovieSubmit(event, 2)}
@@ -99,7 +99,7 @@ function AddMoviePage() {
         id="filled-multiline-static"
         label="Movie Description"
         multiline
-        rows={6}
+        rows={5}
         variant="filled"
         value={movieInput.description}
         onChange={() => handleMovieSubmit(event, 3)}
